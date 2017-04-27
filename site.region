@@ -12,6 +12,36 @@
       Y.Squarespace.FollowButtonUtils = {};
       Y.Squarespace.FollowButtonUtils.renderAll = function(){};
     </script>
+    {.equal? collection.urlId "zh-tw"}
+      <link rel="alternate" href=https://www.ichefpos.com/zh-hk hreflang="zh-HK" />
+      <link rel="alternate" href=https://www.ichefpos.com/en-sg hreflang="en-SG" />
+      <link rel="alternate" href=https://www.ichefpos.com/en-my hreflang="en-MY" />
+      <link rel="alternate" href=https://www.ichefpos.com hreflang="en-US" />   
+    {.end}
+    {.equal? collection.urlId "zh-hk"}
+      <link rel="alternate" href=https://www.ichefpos.com/zh-tw hreflang="zh-TW" />
+      <link rel="alternate" href=https://www.ichefpos.com/en-sg hreflang="en-SG" />
+      <link rel="alternate" href=https://www.ichefpos.com/en-my hreflang="en-MY" />
+      <link rel="alternate" href=https://www.ichefpos.com hreflang="en-US" /> 
+    {.end}
+    {.equal? collection.urlId "en-sg"}
+      <link rel="alternate" href=https://www.ichefpos.com/zh-hk hreflang="zh-HK" /> 
+      <link rel="alternate" href=https://www.ichefpos.com/zh-tw hreflang="zh-TW" />
+      <link rel="alternate" href=https://www.ichefpos.com/en-my hreflang="en-MY" />
+      <link rel="alternate" href=https://www.ichefpos.com hreflang="en-US" /> 
+    {.end}
+    {.equal? collection.urlId "en-my"}
+      <link rel="alternate" href=https://www.ichefpos.com/zh-hk hreflang="zh-HK" /> 
+      <link rel="alternate" href=https://www.ichefpos.com/zh-tw hreflang="zh-TW" />
+      <link rel="alternate" href=https://www.ichefpos.com/en-sg hreflang="en-SG" />
+      <link rel="alternate" href=https://www.ichefpos.com hreflang="en-US" /> 
+    {.end}
+    {.equal? collection.urlId "index"}
+      <link rel="alternate" href=https://www.ichefpos.com/zh-hk hreflang="zh-HK" /> 
+      <link rel="alternate" href=https://www.ichefpos.com/zh-tw hreflang="zh-TW" />
+      <link rel="alternate" href=https://www.ichefpos.com/en-sg hreflang="en-SG" />
+      <link rel="alternate" href=https://www.ichefpos.com/en-my hreflang="en-MY" />
+    {.end}
   </head>
 
   <body id="{squarespace.page-id}" class="{squarespace.page-classes}{.if item}{.section item}{.background-source-video?} has-banner-image has-banner-video{.or}{.main-image?} has-banner-image{.end}{.end}{.end}{.or}{.section collection}{.equal? typeName "index"}{.section collections}{.section 0}{.background-source-video?} has-banner-image has-banner-video{.or}{.section mainImage} has-banner-image{.end}{.end}{.end}{.end}{.or}{.equal? typeName "album"}{.or}{.equal? typeName "gallery"}{.or}{.background-source-video?} has-banner-image has-banner-video{.or}{.section mainImage} has-banner-image{.end}{.end}{.end}{.end}{.end}{.end}{.end} {.if template.mobileStylesEnabled}{.or}mobile-styles-disabled{.end}">
@@ -113,7 +143,7 @@
                   {.or}
 
                     {# Other}
-                    <div class="page-title-wrapper"><h1 class="page-title">
+                    <div class="page-title-wrapper"><h1 itemprop="headline" class="page-title">
                       {.passthrough?}
                         <a href="{sourceUrl}" class="entry-title-passthrough" target="_blank">{title}</a>
                       {.or}
@@ -124,9 +154,10 @@
                     <div class="page-desc">
                       <p class="date entry-author">
                         <time class="published" datetime="{addedOn|date %F}">{addedOn|date %B %e, %Y}</time>{.section author}
-                        <span class="author-name"><br>
-                          <em>by</em> <a href="{collection.fullUrl}?author={author.id}">{displayName}</a>
+                        <span class="author-name" itemprop="author" itemscope itemtype="https://schema.org/Person"><br>
+                          <em>by</em> <a href="{collection.fullUrl}?author={author.id}"><span itemprop="name">{displayName}</span></a>
                         </span>{.end}
+                        <meta itemprop="datePublished" content="{addedOn|date %B %e, %Y}"/>
                       </p>
                     </div>
                     {# /Other}
