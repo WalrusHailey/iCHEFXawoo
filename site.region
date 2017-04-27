@@ -57,7 +57,7 @@
           <div class="sqs-cart-dropzone"></div>
           <div class="title-nav-wrapper">
             {.section website}
-            <h1 data-content-field="site-title" class="site-title">
+            <div data-content-field="site-title" class="site-title">
               <a href="/" id="top">
                 {.section logoImageUrl}
                  <img src="{logoImageUrl}?format=1500w" alt="{siteTitle}" />
@@ -65,7 +65,7 @@
                   {siteTitle}
                 {.end}
               </a>
-            </h1>
+            </div>
             <a class="icon-menu" id="mobileMenu"></a>
             {.end}
             <!--MAIN NAVIGATION-->
