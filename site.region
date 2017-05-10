@@ -1,7 +1,7 @@
 <!doctype html>
-
 <html class="{.if authenticatedAccount}authenticated-account{.end}">
   <head>
+		<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     {.if template.mobileStylesEnabled}
@@ -12,36 +12,54 @@
       Y.Squarespace.FollowButtonUtils = {};
       Y.Squarespace.FollowButtonUtils.renderAll = function(){};
     </script>
-    {.equal? collection.urlId "zh-tw"}
-      <link rel="alternate" href=https://www.ichefpos.com/zh-hk hreflang="zh-HK" />
-      <link rel="alternate" href=https://www.ichefpos.com/en-sg hreflang="en-SG" />
-      <link rel="alternate" href=https://www.ichefpos.com/en-my hreflang="en-MY" />
-      <link rel="alternate" href=https://www.ichefpos.com hreflang="en-US" />   
-    {.end}
-    {.equal? collection.urlId "zh-hk"}
-      <link rel="alternate" href=https://www.ichefpos.com/zh-tw hreflang="zh-TW" />
-      <link rel="alternate" href=https://www.ichefpos.com/en-sg hreflang="en-SG" />
-      <link rel="alternate" href=https://www.ichefpos.com/en-my hreflang="en-MY" />
-      <link rel="alternate" href=https://www.ichefpos.com hreflang="en-US" /> 
-    {.end}
-    {.equal? collection.urlId "en-sg"}
-      <link rel="alternate" href=https://www.ichefpos.com/zh-hk hreflang="zh-HK" /> 
-      <link rel="alternate" href=https://www.ichefpos.com/zh-tw hreflang="zh-TW" />
-      <link rel="alternate" href=https://www.ichefpos.com/en-my hreflang="en-MY" />
-      <link rel="alternate" href=https://www.ichefpos.com hreflang="en-US" /> 
-    {.end}
-    {.equal? collection.urlId "en-my"}
-      <link rel="alternate" href=https://www.ichefpos.com/zh-hk hreflang="zh-HK" /> 
-      <link rel="alternate" href=https://www.ichefpos.com/zh-tw hreflang="zh-TW" />
-      <link rel="alternate" href=https://www.ichefpos.com/en-sg hreflang="en-SG" />
-      <link rel="alternate" href=https://www.ichefpos.com hreflang="en-US" /> 
-    {.end}
-    {.equal? collection.urlId "index"}
-      <link rel="alternate" href=https://www.ichefpos.com/zh-hk hreflang="zh-HK" /> 
-      <link rel="alternate" href=https://www.ichefpos.com/zh-tw hreflang="zh-TW" />
-      <link rel="alternate" href=https://www.ichefpos.com/en-sg hreflang="en-SG" />
-      <link rel="alternate" href=https://www.ichefpos.com/en-my hreflang="en-MY" />
-    {.end}
+
+		<script>
+    $(document).ready(function() {
+      var linkHTML = getLinkTagHTML();
+			$("head meta").last().after(linkHTML);
+    });
+
+    function getLinkTagHTML() {
+      var langs = [
+        "en-us",
+        "zh-tw",
+        "zh-hk",
+        "en-sg",
+        "en-my"
+      ];
+
+      var ctryName = location.pathname.split("/")[1]; // find the pathname first string as country code
+			var langPos = $.inArray(ctryName, langs); 			// find the lang in array index position
+
+      var linkHTML = "";
+      langs.forEach(function(v, k) {
+				if (langPos > -1) {
+					if (v != ctryName) {
+						var hrefUrl = location.protocol + "//" + location.host + location.pathname.replace(ctryName, v);
+						if (v == "en-us") hrefUrl = hrefUrl.replace("/en-us", "");
+						linkHTML += ("<link rel=\"alternate\" href=\"" + hrefUrl + "\" hreflang=\"" + getUpperLang(v) + "\" />");
+					}
+				} else {
+					var hrefUrl = location.protocol + "//" + location.host + "/" + v + location.pathname;
+					if (v == "en-us") hrefUrl = hrefUrl.replace("/en-us", "");
+					linkHTML += ("<link rel=\"alternate\" href=\"" + hrefUrl + "\" hreflang=\"" + getUpperLang(v) + "\" />");
+				}
+      });
+
+      return linkHTML;
+    }
+
+		// convert to uppercase
+		function getUpperLang(lang) {
+			var tmp = lang.split("-");
+
+			if (tmp.length > 1) {
+				tmp[1] = String.prototype.toUpperCase.apply(tmp[1]);
+			}
+
+			return tmp.join("-");
+		}
+    </script>
   </head>
 
   <body id="{squarespace.page-id}" class="{squarespace.page-classes}{.if item}{.section item}{.background-source-video?} has-banner-image has-banner-video{.or}{.main-image?} has-banner-image{.end}{.end}{.end}{.or}{.section collection}{.equal? typeName "index"}{.section collections}{.section 0}{.background-source-video?} has-banner-image has-banner-video{.or}{.section mainImage} has-banner-image{.end}{.end}{.end}{.end}{.or}{.equal? typeName "album"}{.or}{.equal? typeName "gallery"}{.or}{.background-source-video?} has-banner-image has-banner-video{.or}{.section mainImage} has-banner-image{.end}{.end}{.end}{.end}{.end}{.end}{.end} {.if template.mobileStylesEnabled}{.or}mobile-styles-disabled{.end}">
