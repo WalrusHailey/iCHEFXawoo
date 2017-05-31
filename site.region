@@ -64,7 +64,38 @@
 
   <body id="{squarespace.page-id}" class="{squarespace.page-classes}{.if item}{.section item}{.background-source-video?} has-banner-image has-banner-video{.or}{.main-image?} has-banner-image{.end}{.end}{.end}{.or}{.section collection}{.equal? typeName "index"}{.section collections}{.section 0}{.background-source-video?} has-banner-image has-banner-video{.or}{.section mainImage} has-banner-image{.end}{.end}{.end}{.end}{.or}{.equal? typeName "album"}{.or}{.equal? typeName "gallery"}{.or}{.background-source-video?} has-banner-image has-banner-video{.or}{.section mainImage} has-banner-image{.end}{.end}{.end}{.end}{.end}{.end}{.end} {.if template.mobileStylesEnabled}{.or}mobile-styles-disabled{.end}">
     <div id="mobileNav" data-content-field="navigation-mobileNav">
-      <squarespace:navigation navigationId="mainNav" template="navigation" />
+      <script>
+        var urlId = "{collection.urlId}";
+        var ctryName = urlId.split("/")[0];
+        var pageType = urlId.split("/")[1];
+        {# Test document.write(ctryName);}
+        {# Test document.write(pageType);}
+        if (ctryName == "zh-tw") {
+          if (pageType == "blog"){
+            document.write('<squarespace:navigation navigationId="twBlogNav" template="twBlog-navigation" />');
+          } else {
+            document.write('<squarespace:navigation navigationId="twNav" template="tw-navigation" />');
+          }
+          
+        } else if (ctryName == "zh-hk") {
+          if (pageType == "blog") {
+            document.write('<squarespace:navigation navigationId="hkBlogNav" template="hkBlog-navigation" />');
+          } else {
+            document.write('<squarespace:navigation navigationId="hkNav" template="hk-navigation" />');
+          }
+
+        } else if (ctryName == "en-sg") {
+          if (pageType == "blog") {
+            document.write('<squarespace:navigation navigationId="sgBlogNav" template="sgBlog-navigation" />');
+          } else {
+            document.write('<squarespace:navigation navigationId="sgNav" template="sg-navigation" />');
+          }
+        } else if (ctryName == "en-my") {
+            document.write('<squarespace:navigation navigationId="myNav" template="my-navigation" />');
+        } else {
+            document.write('<squarespace:navigation navigationId="gbNav" template="global-navigation" />');
+        }
+      </script>
     </div>
 
     <div class="site-wrapper">
