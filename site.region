@@ -91,7 +91,7 @@
         } else if (ctryName == "en-my") {
             document.write('<squarespace:navigation navigationId="myNav" template="my-navigation" />');
         } else {
-            document.write('<squarespace:navigation navigationId="gbNav" template="global-navigation" />');
+            document.write('<squarespace:navigation navigationId="mainNav" template="navigation" />');
         }
       </script>
     </div>
@@ -144,7 +144,7 @@
                 } else if (ctryName == "en-my") {
                     document.write('<squarespace:navigation navigationId="myNav" template="my-navigation" />');
                 } else {
-                    document.write('<squarespace:navigation navigationId="gbNav" template="global-navigation" />');
+                    document.write('<squarespace:navigation navigationId="mainNav" template="navigation" />');
                 }
               </script>
             </div>
