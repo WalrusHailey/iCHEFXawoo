@@ -68,8 +68,6 @@
         var urlId = "{collection.urlId}";
         var ctryName = urlId.split("/")[0];
         var pageType = urlId.split("/")[1];
-        {# Test document.write(ctryName);}
-        {# Test document.write(pageType);}
         if (ctryName == "zh-tw") {
           if (pageType == "blog"){
             document.write('<squarespace:navigation navigationId="twBlogNav" template="twBlog-navigation" />');
@@ -123,8 +121,6 @@
                 var urlId = "{collection.urlId}";
                 var ctryName = urlId.split("/")[0];
                 var pageType = urlId.split("/")[1];
-                {# Test document.write(ctryName);}
-                {# Test document.write(pageType);}
                 if (ctryName == "zh-tw") {
                   if (pageType == "blog"){
                     document.write('<squarespace:navigation navigationId="twBlogNav" template="twBlog-navigation" />');
@@ -374,8 +370,6 @@
                 var urlId = "{collection.urlId}";
                 var ctryName = urlId.split("/")[0];
                 var pageType = urlId.split("/")[1];
-                {# Test document.write(ctryName);}
-                {# Test document.write(pageType);}
                 if (ctryName == "zh-tw" && pageType != "blog" ) {
                   document.write('<squarespace:navigation navigationId="twSecNav" template="tw-sec-navigation" />');
                 } else if (ctryName == "zh-tw" && pageType == "blog") {
