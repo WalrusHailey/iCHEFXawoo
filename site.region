@@ -91,7 +91,7 @@
         } else if (ctryName == "en-my") {
             document.write('<squarespace:navigation navigationId="myNav" template="my-navigation" />');
         } else {
-            document.write('<squarespace:navigation navigationId="mainNav" template="navigation" />');
+            document.write('<squarespace:navigation navigationId="gbNav" template="global-navigation" />');
         }
       </script>
     </div>
@@ -144,7 +144,7 @@
                 } else if (ctryName == "en-my") {
                     document.write('<squarespace:navigation navigationId="myNav" template="my-navigation" />');
                 } else {
-                    document.write('<squarespace:navigation navigationId="mainNav" template="navigation" />');
+                    document.write('<squarespace:navigation navigationId="gbNav" template="global-navigation" />');
                 }
               </script>
             </div>
@@ -385,7 +385,7 @@
                 } else if (ctryName == "en-my" && pageType != "blog") {
                   document.write('<squarespace:navigation navigationId="mySecNav" template="my-sec-navigation" />');
                 } else {
-                  document.write('<squarespace:navigation navigationId="secondaryNav" template="secondary-navigation" />');
+                  document.write('<squarespace:navigation navigationId="gbSecNav" template="global-sec-navigation" />');
                 }
               </script>
               
