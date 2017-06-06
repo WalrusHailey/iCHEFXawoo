@@ -367,26 +367,33 @@
           <div class="footer-wrapper">
             <div id="secondaryNav" data-content-field="navigation-secondaryNav">
               <script>
-                var urlId = "{collection.urlId}";
-                var ctryName = urlId.split("/")[0];
-                var pageType = urlId.split("/")[1];
-                if (ctryName == "zh-tw" && pageType != "blog" ) {
-                  document.write('<squarespace:navigation navigationId="twSecNav" template="tw-sec-navigation" />');
-                } else if (ctryName == "zh-tw" && pageType == "blog") {
-                  document.write('<squarespace:navigation navigationId="twBlogSecNav" template="tw-blog-sec-navigation" />');
-                } else if (ctryName == "zh-hk" && pageType != "blog") {
-                  document.write('<squarespace:navigation navigationId="hkSecNav" template="hk-sec-navigation" />');
-                } else if (ctryName == "zh-hk" && pageType == "blog") {
-                  document.write('<squarespace:navigation navigationId="hkBlogSecNav" template="hk-blog-sec-navigation" />');
-                } else if (ctryName == "en-sg" && pageType != "blog") {
-                  document.write('<squarespace:navigation navigationId="sgSecNav" template="sg-sec-navigation" />');
-                } else if (ctryName == "en-sg" && pageType == "blog") {
-                  document.write('<squarespace:navigation navigationId="sgBlogSecNav" template="sg-blog-sec-navigation" />');
-                } else if (ctryName == "en-my" && pageType != "blog") {
-                  document.write('<squarespace:navigation navigationId="mySecNav" template="my-sec-navigation" />');
-                } else {
-                  document.write('<squarespace:navigation navigationId="gbSecNav" template="global-sec-navigation" />');
-                }
+                var ctryName = location.pathname.split("/")[1];
+                var pageType = urlId.split("/")[2];
+                  if (ctryName == "zh-tw") {
+                    if (pageType == "blog"){
+                      document.write('<squarespace:navigation navigationId="twBlogSecNav" template="tw-blog-sec-navigation" />');
+                                  } else {
+                                    document.write('<squarespace:navigation navigationId="twSecNav" template="tw-sec-navigation" />');
+                                  }
+                                  
+                                } else if (ctryName == "zh-hk") {
+                                  if (pageType == "blog") {
+                                    document.write('<squarespace:navigation navigationId="hkBlogSecNav" template="hk-blog-sec-navigation" />');
+                                  } else {
+                                    document.write('<squarespace:navigation navigationId="hkSecNav" template="hk-sec-navigation" />');
+                                  }
+
+                                } else if (ctryName == "en-sg") {
+                                  if (pageType == "blog") {
+                                    document.write('<squarespace:navigation navigationId="sgBlogSecNav" template="sg-blog-sec-navigation" />');
+                                  } else {
+                                    document.write('<squarespace:navigation navigationId="sgSecNav" template="sg-sec-navigation" />');
+                                  }
+                                } else if (ctryName == "en-my") {
+                                    document.write('<squarespace:navigation navigationId="mySecNav" template="my-sec-navigation" />');
+                                } else {
+                                    document.write('<squarespace:navigation navigationId="gbSecNav" template="global-sec-navigation" />');
+                                }
               </script>
               
             </div>
