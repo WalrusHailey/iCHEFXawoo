@@ -8,11 +8,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     {.end}
     {squarespace-headers}
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
     <script>
       Y.Squarespace.FollowButtonUtils = {};
       Y.Squarespace.FollowButtonUtils.renderAll = function(){};
     </script>
-
 		<script>
     $(document).ready(function() {
       var linkHTML = getLinkTagHTML();
@@ -91,7 +91,7 @@
         } else if (ctryName == "en-my") {
             document.write('<squarespace:navigation navigationId="myNav" template="my-navigation" />');
         } else {
-            document.write('<squarespace:navigation navigationId="gbNav" template="global-navigation" />');
+            document.write('<squarespace:navigation navigationId="mainNav" template="navigation" />');
         }
       </script>
     </div>
@@ -107,12 +107,50 @@
             <div data-content-field="site-title" class="site-title">
               <a href="/" id="top">
                 {.section logoImageUrl}
-                 <img src="{logoImageUrl}?format=1500w" alt="{siteTitle}" />
+                 <img src="{logoImageUrl}?format=1500w" alt="{siteTitle}" id="logoImageCtry" />
                 {.or}
                   {siteTitle}
                 {.end}
               </a>
             </div>
+          <script>
+            document.getElementById("top").href = "/zh-tw";
+            var urlId = "{collection.urlId}";
+            var ctryName = urlId.split("/")[0];
+            var pageType = urlId.split("/")[1];
+            if (ctryName == "zh-tw") {
+              if (pageType == "blog"){
+                document.getElementById("top").href = "/zh-tw/blog/home";
+                document.getElementById("logoImageCtry").src = "//static1.squarespace.com/static/5805f79646c3c4a864a310f0/t/586f80f5c534a51ae5f1a042/1483702517423/iCHEFClubTW-index-Logo-white-2.png";
+              } else {
+                document.getElementById("top").href = "/zh-tw";
+                document.getElementById("logoImageCtry").src = "//static1.squarespace.com/static/5805f79646c3c4a864a310f0/t/58103588ebbd1a629ba38b02/1477457288757/iCHEF-index-Logo-white.png";
+              }
+              
+            } else if (ctryName == "zh-hk") {
+              if (pageType == "blog") {
+                document.getElementById("top").href = "/zh-hk/blog/home";
+                document.getElementById("logoImageCtry").src = "//static1.squarespace.com/static/5805f79646c3c4a864a310f0/t/58249af9893fc0a45bc00653/1478793977607/iCHEFClubHK-index-Logo-white2.png";
+              } else {
+                document.getElementById("top").href = "/zh-hk";
+                document.getElementById("logoImageCtry").src = "//static1.squarespace.com/static/5805f79646c3c4a864a310f0/t/58103568ebbd1a629ba38a27/1477457256860/iCHEF-HK-logo-white.png";
+              }
+
+            } else if (ctryName == "en-sg") {
+              if (pageType == "blog") {
+                document.getElementById("top").href = "/en-sg/blog/home";
+                document.getElementById("logoImageCtry").src = "//static1.squarespace.com/static/5805f79646c3c4a864a310f0/t/58249b08893fc0a45bc0076e/1478793992400/iCHEFClubSG-index-Logo-white2.png";
+              } else {
+                document.getElementById("top").href = "/en-sg";
+                document.getElementById("logoImageCtry").src = "//static1.squarespace.com/static/5805f79646c3c4a864a310f0/t/58185f995016e166cfa4e9b2/1477992345214/iCHEF-SG-logo-white.png";
+              }
+            } else if (ctryName == "en-my") {
+               document.getElementById("top").href = "/en-my";
+               document.getElementById("logoImageCtry").src = "//static1.squarespace.com/static/5805f79646c3c4a864a310f0/t/58185fa05016e166cfa4e9d5/1477992352423/iCHEF-MY-logo-white.png";
+            } else {
+              
+            }
+          </script>
             <a class="icon-menu" id="mobileMenu"></a>
             {.end}
             <!--MAIN NAVIGATION-->
@@ -144,7 +182,7 @@
                 } else if (ctryName == "en-my") {
                     document.write('<squarespace:navigation navigationId="myNav" template="my-navigation" />');
                 } else {
-                    document.write('<squarespace:navigation navigationId="gbNav" template="global-navigation" />');
+                    document.write('<squarespace:navigation navigationId="mainNav" template="navigation" />');
                 }
               </script>
             </div>
@@ -390,7 +428,7 @@
                   } else if (ctryName == "en-my") {
                       document.write('<squarespace:navigation navigationId="mySecNav" template="my-sec-navigation" />');
                   } else {
-                      document.write('<squarespace:navigation navigationId="gbSecNav" template="global-sec-navigation" />');
+                      document.write('<squarespace:navigation navigationId="secondaryNav" template="secondary-navigation" />');
                   }
               </script>  
             </div>
@@ -402,6 +440,7 @@
 
     {squarespace-footers}
     <squarespace:script src="site-bundle.js" combo="false" />
+    <squarespace:script src="ichef-scripts.js" combo="false" />
     {.if template.mobileStylesEnabled}{.or}
       <script>
         Y.use('node', function() {
